@@ -291,7 +291,7 @@
         </div>
         <div class="category-title">Кухня</div>
         <div class="category-preview">
-          <img src="https://images.unsplash.com/photo-1556228578-8d89a5e1b5c1?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Кухня">
+          <img src="https://picsum.photos/seed/kitchen/400/300" loading="lazy" alt="Кухня">
         </div>
       </div>
 
@@ -304,7 +304,7 @@
         </div>
         <div class="category-title">Гостиная</div>
         <div class="category-preview">
-          <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Гостиная">
+          <img src="https://picsum.photos/seed/living/400/300" loading="lazy" alt="Гостиная">
         </div>
       </div>
 
@@ -317,7 +317,7 @@
         </div>
         <div class="category-title">Спальня</div>
         <div class="category-preview">
-          <img src="https://images.unsplash.com/photo-1567720075475-749657264852?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Спальня">
+          <img src="https://picsum.photos/seed/bedroom/400/300" loading="lazy" alt="Спальня">
         </div>
       </div>
 
@@ -330,7 +330,7 @@
         </div>
         <div class="category-title">Прихожая</div>
         <div class="category-preview">
-          <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Прихожая">
+          <img src="https://picsum.photos/seed/hallway/400/300" loading="lazy" alt="Прихожая">
         </div>
       </div>
 
@@ -343,7 +343,7 @@
         </div>
         <div class="category-title">Другое</div>
         <div class="category-preview">
-          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Другое">
+          <img src="https://picsum.photos/seed/other/400/300" loading="lazy" alt="Другое">
         </div>
       </div>
 
@@ -375,42 +375,42 @@
 
     document.querySelectorAll('.category-item').forEach(item => observer.observe(item));
 
-    // Данные для галерей
+    // Данные для галерей (с picsum.photos — работает везде)
     const galleryData = {
       kitchen: [
-        'https://images.unsplash.com/photo-1556228578-8d89a5e1b5c1?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1584622650111-993a426fb468?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1598928636135-d146004132ab?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1618773928154-68a4e1a7f22e?auto=format&fit=crop&w=600&h=500&q=85'
+        'https://picsum.photos/seed/kitchen1/600/500',
+        'https://picsum.photos/seed/kitchen2/600/500',
+        'https://picsum.photos/seed/kitchen3/600/500',
+        'https://picsum.photos/seed/kitchen4/600/500',
+        'https://picsum.photos/seed/kitchen5/600/500'
       ],
       living: [
-        'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1598928636135-d146004132ab?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1618773928154-68a4e1a7f22e?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1600210492486-724fe5c239a1?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1583847268964-d7e4c4b5c7d5?auto=format&fit=crop&w=600&h=500&q=85'
+        'https://picsum.photos/seed/living1/600/500',
+        'https://picsum.photos/seed/living2/600/500',
+        'https://picsum.photos/seed/living3/600/500',
+        'https://picsum.photos/seed/living4/600/500',
+        'https://picsum.photos/seed/living5/600/500'
       ],
       bedroom: [
-        'https://images.unsplash.com/photo-1567720075475-749657264852?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1616469829580-4e3332e6d788?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1600210492486-724fe5c239a1?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1583847268964-d7e4c4b5c7d5?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1598928636135-d146004132ab?auto=format&fit=crop&w=600&h=500&q=85'
+        'https://picsum.photos/seed/bedroom1/600/500',
+        'https://picsum.photos/seed/bedroom2/600/500',
+        'https://picsum.photos/seed/bedroom3/600/500',
+        'https://picsum.photos/seed/bedroom4/600/500',
+        'https://picsum.photos/seed/bedroom5/600/500'
       ],
       hallway: [
-        'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1600585154084-8c8c264ec2a0?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1583847268964-d7e4c4b5c7d5?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1618773928154-68a4e1a7f22e?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1598928636135-d146004132ab?auto=format&fit=crop&w=600&h=500&q=85'
+        'https://picsum.photos/seed/hallway1/600/500',
+        'https://picsum.photos/seed/hallway2/600/500',
+        'https://picsum.photos/seed/hallway3/600/500',
+        'https://picsum.photos/seed/hallway4/600/500',
+        'https://picsum.photos/seed/hallway5/600/500'
       ],
       other: [
-        'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1598928636135-d146004132ab?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1618773928154-68a4e1a7f22e?auto=format&fit=crop&w=600&h=500&q=85',
-        'https://images.unsplash.com/photo-1583847268964-d7e4c4b5c7d5?auto=format&fit=crop&w=600&h=500&q=85'
+        'https://picsum.photos/seed/other1/600/500',
+        'https://picsum.photos/seed/other2/600/500',
+        'https://picsum.photos/seed/other3/600/500',
+        'https://picsum.photos/seed/other4/600/500',
+        'https://picsum.photos/seed/other5/600/500'
       ]
     };
 
@@ -436,6 +436,5 @@
   </script>
 </body>
 </html>
-</body>
-
 </html>
+
