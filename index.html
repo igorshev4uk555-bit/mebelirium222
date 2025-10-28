@@ -10,7 +10,6 @@
       --bg: #ffffff;
       --text: #1a1a1a;
       --gold: #d4af37;
-      --gold-light: #e6c97a;
       --light-bg: #fafafa;
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Montserrat', sans-serif;
@@ -160,17 +159,20 @@
       margin-top: 1rem;
       width: 140px;
       height: 100px;
-      background: #f0f0f0;
+      background: white;
       border-radius: 8px;
       overflow: hidden;
-      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .category-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      background: #f0f0f0;
+    .category-preview svg {
+      width: 90%;
+      height: 90%;
+      stroke: #1a1a1a;
+      stroke-width: 1;
+      fill: none;
     }
 
     /* Галерея */
@@ -233,15 +235,20 @@
     }
 
     .gallery-item {
+      height: 180px;
       border-radius: 8px;
-      overflow: hidden;
-      background: #f5f5f5;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .gallery-item img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
+    .gallery-item svg {
+      width: 80%;
+      height: 80%;
+      stroke: #1a1a1a;
+      stroke-width: 1;
+      fill: none;
     }
 
     footer {
@@ -291,7 +298,11 @@
         </div>
         <div class="category-title">Кухня</div>
         <div class="category-preview">
-          <img src="https://picsum.photos/seed/kitchen/400/300" loading="lazy" alt="Кухня">
+          <svg viewBox="0 0 100 100">
+            <rect x="10" y="40" width="80" height="40" rx="4" stroke="#d4af37" stroke-width="2"/>
+            <circle cx="30" cy="60" r="8" fill="#d4af37"/>
+            <circle cx="70" cy="60" r="8" fill="#d4af37"/>
+          </svg>
         </div>
       </div>
 
@@ -304,7 +315,10 @@
         </div>
         <div class="category-title">Гостиная</div>
         <div class="category-preview">
-          <img src="https://picsum.photos/seed/living/400/300" loading="lazy" alt="Гостиная">
+          <svg viewBox="0 0 100 100">
+            <rect x="20" y="30" width="60" height="40" rx="4" fill="#f0f0f0" stroke="#1a1a1a"/>
+            <rect x="25" y="35" width="50" height="10" fill="#d4af37"/>
+          </svg>
         </div>
       </div>
 
@@ -317,7 +331,10 @@
         </div>
         <div class="category-title">Спальня</div>
         <div class="category-preview">
-          <img src="https://picsum.photos/seed/bedroom/400/300" loading="lazy" alt="Спальня">
+          <svg viewBox="0 0 100 100">
+            <rect x="15" y="40" width="70" height="30" rx="4" fill="#f0f0f0" stroke="#1a1a1a"/>
+            <rect x="20" y="45" width="60" height="8" fill="#d4af37"/>
+          </svg>
         </div>
       </div>
 
@@ -330,7 +347,10 @@
         </div>
         <div class="category-title">Прихожая</div>
         <div class="category-preview">
-          <img src="https://picsum.photos/seed/hallway/400/300" loading="lazy" alt="Прихожая">
+          <svg viewBox="0 0 100 100">
+            <rect x="30" y="20" width="40" height="60" rx="4" fill="#f0f0f0" stroke="#1a1a1a"/>
+            <circle cx="50" cy="50" r="10" fill="#d4af37"/>
+          </svg>
         </div>
       </div>
 
@@ -343,7 +363,10 @@
         </div>
         <div class="category-title">Другое</div>
         <div class="category-preview">
-          <img src="https://picsum.photos/seed/other/400/300" loading="lazy" alt="Другое">
+          <svg viewBox="0 0 100 100">
+            <rect x="20" y="30" width="60" height="40" rx="4" fill="#f0f0f0" stroke="#1a1a1a"/>
+            <rect x="30" y="40" width="40" height="20" fill="#d4af37"/>
+          </svg>
         </div>
       </div>
 
@@ -375,58 +398,37 @@
 
     document.querySelectorAll('.category-item').forEach(item => observer.observe(item));
 
-    // Данные для галерей (с picsum.photos — работает везде)
-    const galleryData = {
-      kitchen: [
-        'https://picsum.photos/seed/kitchen1/600/500',
-        'https://picsum.photos/seed/kitchen2/600/500',
-        'https://picsum.photos/seed/kitchen3/600/500',
-        'https://picsum.photos/seed/kitchen4/600/500',
-        'https://picsum.photos/seed/kitchen5/600/500'
-      ],
-      living: [
-        'https://picsum.photos/seed/living1/600/500',
-        'https://picsum.photos/seed/living2/600/500',
-        'https://picsum.photos/seed/living3/600/500',
-        'https://picsum.photos/seed/living4/600/500',
-        'https://picsum.photos/seed/living5/600/500'
-      ],
-      bedroom: [
-        'https://picsum.photos/seed/bedroom1/600/500',
-        'https://picsum.photos/seed/bedroom2/600/500',
-        'https://picsum.photos/seed/bedroom3/600/500',
-        'https://picsum.photos/seed/bedroom4/600/500',
-        'https://picsum.photos/seed/bedroom5/600/500'
-      ],
-      hallway: [
-        'https://picsum.photos/seed/hallway1/600/500',
-        'https://picsum.photos/seed/hallway2/600/500',
-        'https://picsum.photos/seed/hallway3/600/500',
-        'https://picsum.photos/seed/hallway4/600/500',
-        'https://picsum.photos/seed/hallway5/600/500'
-      ],
-      other: [
-        'https://picsum.photos/seed/other1/600/500',
-        'https://picsum.photos/seed/other2/600/500',
-        'https://picsum.photos/seed/other3/600/500',
-        'https://picsum.photos/seed/other4/600/500',
-        'https://picsum.photos/seed/other5/600/500'
-      ]
-    };
+    // Пример SVG для галереи
+    function getSvg(type, index) {
+      const colors = ['#d4af37', '#e6c97a', '#b8860b'];
+      const color = colors[index % colors.length];
+      switch(type) {
+        case 'kitchen':
+          return `<svg viewBox="0 0 100 100"><rect x="10" y="40" width="80" height="40" rx="4" stroke="#1a1a1a" stroke-width="2"/><circle cx="${30+index*5}" cy="60" r="8" fill="${color}"/></svg>`;
+        case 'living':
+          return `<svg viewBox="0 0 100 100"><rect x="20" y="30" width="60" height="40" rx="4" fill="#f0f0f0" stroke="#1a1a1a"/><rect x="25" y="35" width="50" height="10" fill="${color}"/></svg>`;
+        case 'bedroom':
+          return `<svg viewBox="0 0 100 100"><rect x="15" y="40" width="70" height="30" rx="4" fill="#f0f0f0" stroke="#1a1a1a"/><rect x="20" y="45" width="60" height="8" fill="${color}"/></svg>`;
+        case 'hallway':
+          return `<svg viewBox="0 0 100 100"><rect x="30" y="20" width="40" height="60" rx="4" fill="#f0f0f0" stroke="#1a1a1a"/><circle cx="50" cy="${40+index*3}" r="10" fill="${color}"/></svg>`;
+        default:
+          return `<svg viewBox="0 0 100 100"><rect x="20" y="30" width="60" height="40" rx="4" fill="#f0f0f0" stroke="#1a1a1a"/><rect x="30" y="40" width="40" height="20" fill="${color}"/></svg>`;
+      }
+    }
 
-    // Открытие галереи
     document.querySelectorAll('.category-item').forEach(item => {
       item.addEventListener('click', function() {
         const cat = this.dataset.category;
         const grid = document.getElementById('galleryGrid');
-        grid.innerHTML = galleryData[cat].map(src => 
-          `<div class="gallery-item"><img src="${src}" loading="lazy" alt="Проект"></div>`
-        ).join('');
+        let html = '';
+        for (let i = 1; i <= 5; i++) {
+          html += `<div class="gallery-item">${getSvg(cat, i)}</div>`;
+        }
+        grid.innerHTML = html;
         document.getElementById('galleryModal').style.display = 'flex';
       });
     });
 
-    // Закрытие модалки
     document.querySelector('.close-btn').onclick = () => {
       document.getElementById('galleryModal').style.display = 'none';
     };
@@ -436,5 +438,5 @@
   </script>
 </body>
 </html>
-</html>
+
 
