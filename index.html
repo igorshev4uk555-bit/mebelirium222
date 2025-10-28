@@ -13,7 +13,7 @@
       --gold: #d4af37;
       --gold-dark: #b8860b;
       --gold-light: #e6c97a;
-      --light-bg: #fafafa;
+      --light-bg: linear-gradient(135deg, #fdfcf8 0%, #f9f7f2 100%);
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Montserrat', sans-serif;
     }
@@ -26,17 +26,29 @@
 
     body {
       font-family: var(--font-sans);
-      background-color: var(--light-bg);
+      background: var(--light-bg);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* Hero Slider */
+    /* Hero Section */
     .hero-section {
       position: relative;
       height: 100vh;
       overflow: hidden;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(to top, rgba(0,0,0,0.03), transparent);
+      pointer-events: none;
+      z-index: 5;
     }
 
     .hero-slider {
@@ -58,18 +70,28 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg);
+      background-size: cover;
+      background-position: center;
     }
 
-    .slide.active {
-      opacity: 1;
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.25); /* Полупрозрачный оверлей */
+      z-index: 1;
     }
 
     .slide-content {
       text-align: center;
       max-width: 800px;
       padding: 0 2rem;
-      color: var(--text);
+      color: white; /* Белый текст на тёмном оверлее */
+      position: relative;
+      z-index: 2;
     }
 
     .slide h1 {
@@ -79,7 +101,6 @@
       margin-bottom: 1.2rem;
       letter-spacing: 2px;
       line-height: 1.1;
-      color: var(--text);
     }
 
     .slide p {
@@ -87,10 +108,8 @@
       font-weight: 300;
       font-size: 1.3rem;
       margin-bottom: 2rem;
-      color: #444;
     }
 
-    /* Стабильная кнопка с анимацией hover */
     .hero-consult-btn {
       position: absolute;
       bottom: 10vh;
@@ -126,7 +145,6 @@
       transition: transform 0.3s ease;
     }
 
-    /* Анимация при наведении */
     .hero-consult-btn:hover {
       background: var(--gold-dark);
       box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);
@@ -141,7 +159,7 @@
       transform: translateX(4px);
     }
 
-    /* О нас */
+    /* Остальной CSS без изменений... */
     .about {
       padding: 8rem 2rem;
       max-width: 900px;
@@ -167,7 +185,6 @@
       margin: 0 auto;
     }
 
-    /* Проекты */
     .projects-section {
       padding: 6rem 2rem 8rem;
       max-width: 1200px;
@@ -211,7 +228,7 @@
 
     .project-preview {
       height: 240px;
-      background: linear-gradient(135deg, #f5f7fa, #e4e7f1);
+      background: linear-gradient(135deg, #fdfcf8, #f9f7f2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -252,7 +269,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Категории мебели */
     .categories-section {
       padding: 6rem 2rem 8rem;
       max-width: 1200px;
@@ -347,7 +363,6 @@
       color: var(--gold);
     }
 
-    /* Футер */
     footer {
       background: var(--text);
       color: white;
@@ -408,7 +423,6 @@
       color: #777;
     }
 
-    /* Адаптив */
     @media (max-width: 768px) {
       .slide h1 {
         font-size: 2.8rem;
@@ -438,22 +452,22 @@
 </head>
 <body>
 
-  <!-- Hero Section -->
+  <!-- Hero Section с фоновыми фото -->
   <section class="hero-section">
     <div class="hero-slider">
-      <div class="slide active">
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
         <div class="slide-content">
           <h1>Индивидуальная мебель<br>с премиальным характером</h1>
           <p>Каждый проект — это отражение вашего вкуса, стиля и пространства.</p>
         </div>
       </div>
-      <div class="slide">
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1598928636135-d146004132ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
         <div class="slide-content">
           <h1>Искусство создания пространства</h1>
           <p>Мы создаём не просто мебель — мы создаём атмосферу, в которой хочется жить.</p>
         </div>
       </div>
-      <div class="slide">
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1618773928154-68a4e1a7f22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
         <div class="slide-content">
           <h1>Создано для жизни</h1>
           <p>Не просто мебель — пространства, в которых рождаются воспоминания.</p>
@@ -461,14 +475,13 @@
       </div>
     </div>
 
-    <!-- Стабильная кнопка с анимацией hover -->
     <a href="#categories" class="hero-consult-btn">
       <i class="fas fa-pen-fancy"></i>
       <span>Начать проект</span>
     </a>
   </section>
 
-  <!-- О нас -->
+  <!-- Остальной HTML без изменений... -->
   <section class="about">
     <h2>О нас</h2>
     <p>
@@ -478,11 +491,9 @@
     </p>
   </section>
 
-  <!-- Проекты -->
   <section class="projects-section">
     <h2 class="section-title">Наши проекты</h2>
     <div class="projects-grid">
-      <!-- Кухня -->
       <div class="project-card" data-category="kitchen">
         <div class="project-preview">
           <svg viewBox="0 0 100 100">
@@ -498,7 +509,6 @@
         </div>
       </div>
 
-      <!-- Гостиная -->
       <div class="project-card" data-category="living">
         <div class="project-preview">
           <svg viewBox="0 0 100 100">
@@ -513,7 +523,6 @@
         </div>
       </div>
 
-      <!-- Спальня -->
       <div class="project-card" data-category="bedroom">
         <div class="project-preview">
           <svg viewBox="0 0 100 100">
@@ -530,12 +539,9 @@
     </div>
   </section>
 
-  <!-- Категории мебели -->
   <section class="categories-section" id="categories">
     <h2 class="categories-title">Категории мебели</h2>
     <div class="categories-grid">
-
-      <!-- Кровати -->
       <div class="category-item" data-category="beds">
         <div class="category-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -546,7 +552,6 @@
         <div class="category-desc">Роскошные кровати с изголовьями из кожи и дерева</div>
       </div>
 
-      <!-- Кухни -->
       <div class="category-item" data-category="kitchens">
         <div class="category-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -557,7 +562,6 @@
         <div class="category-desc">Эргономичные кухни с островами и скрытой техникой</div>
       </div>
 
-      <!-- Шкафы -->
       <div class="category-item" data-category="wardrobes">
         <div class="category-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -568,7 +572,6 @@
         <div class="category-desc">Встроенные и модульные системы хранения</div>
       </div>
 
-      <!-- Столы -->
       <div class="category-item" data-category="tables">
         <div class="category-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -579,7 +582,6 @@
         <div class="category-desc">Обеденные, рабочие, кофейные — под любой интерьер</div>
       </div>
 
-      <!-- Комоды -->
       <div class="category-item" data-category="commodes">
         <div class="category-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -590,7 +592,6 @@
         <div class="category-desc">Элегантные комоды для спальни и гостиной</div>
       </div>
 
-      <!-- Прихожие -->
       <div class="category-item" data-category="hallways">
         <div class="category-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -600,11 +601,9 @@
         <div class="category-title">Прихожие</div>
         <div class="category-desc">Функциональные шкафы-купе и обувницы</div>
       </div>
-
     </div>
   </section>
 
-  <!-- Футер -->
   <footer>
     <div class="footer-content">
       <div class="footer-col">
@@ -635,7 +634,6 @@
   </footer>
 
   <script>
-    // Слайдер
     const slides = document.querySelectorAll('.slide');
     let current = 0;
 
@@ -647,7 +645,6 @@
 
     setInterval(nextSlide, 6000);
 
-    // Анимация появления при скролле
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -664,7 +661,6 @@
       observer.observe(item);
     });
 
-    // Переход на страницу категории
     document.querySelectorAll('.category-item').forEach(item => {
       item.addEventListener('click', function() {
         const category = this.dataset.category;
@@ -675,3 +671,4 @@
   </script>
 </body>
 </html>
+
