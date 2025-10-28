@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MEBELIRIUM | Мебель на заказ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --gold: #d4af37;
+      --gold-light: #e6c97a;
+      --light-bg: #fafafa;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--light-bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    nav {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 3.4rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 1.2rem;
+      color: var(--text);
+      max-width: 650px;
+      margin: 0 auto 2rem;
+    }
+
+    .consult-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: white;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    }
+
+    .consult-btn:hover {
+      background: #b8860b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
+    }
+
+    .categories-section {
+      max-width: 1000px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-top: 3.5rem;
+    }
+
+    .category-item {
+      text-align: center;
+      width: 140px;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.5s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .category-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .category-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: var(--gold);
+    }
+
+    .category-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: var(--gold);
+      stroke-width: 1.2;
+      fill: none;
+    }
+
+    .category-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.8px;
+    }
+
+    .category-preview {
+      margin-top: 1rem;
+      width: 140px;
+      height: 100px;
+      background: #f0f0f0; /* fallback фон */
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .category-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #f0f0f0;
+    }
+
+    /* Галерея (модальное окно) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: var(--gold);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    footer {
+      background: var(--text);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .consult-btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">MEBELIRIUM</div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Индивидуальная мебель<br>с премиальным характером</h1>
+    <p>Каждый проект — это отражение вашего вкуса, стиля и пространства.</p>
+    <a href="tel:+71234567890" class="consult-btn">Заказать консультацию</a>
+  </section>
+
+  <section class="categories-section">
+    <div class="categories">
+
+      <!-- Кухня -->
+      <div class="category-item" data-category="kitchen">
+        <div class="category-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c.287.287.437.66.437 1.061V20a2 2 0 01-2 2H4a2 2 0 01-2-2v-3.769c0-.401.15-.774.437-1.061l5-5A2 2 0 008 9.172V5L7 4H8z" />
+          </svg>
+        </div>
+        <div class="category-title">Кухня</div>
+        <div class="category-preview">
+          <img src="https://images.unsplash.com/photo-1556228578-8d89a5e1b5c1?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Кухня">
+        </div>
+      </div>
+
+      <!-- Гостиная -->
+      <div class="category-item" data-category="living">
+        <div class="category-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-6 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div class="category-title">Гостиная</div>
+        <div class="category-preview">
+          <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Гостиная">
+        </div>
+      </div>
+
+      <!-- Спальня -->
+      <div class="category-item" data-category="bedroom">
+        <div class="category-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        <div class="category-title">Спальня</div>
+        <div class="category-preview">
+          <img src="https://images.unsplash.com/photo-1567720075475-749657264852?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Спальня">
+        </div>
+      </div>
+
+      <!-- Прихожая -->
+      <div class="category-item" data-category="hallway">
+        <div class="category-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </div>
+        <div class="category-title">Прихожая</div>
+        <div class="category-preview">
+          <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Прихожая">
+        </div>
+      </div>
+
+      <!-- Другое -->
+      <div class="category-item" data-category="other">
+        <div class="category-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+          </svg>
+        </div>
+        <div class="category-title">Другое</div>
+        <div class="category-preview">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&h=300&q=80" loading="lazy" alt="Другое">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 MEBELIRIUM — Индивидуальная мебель ручной работы</p>
+  </footer>
+
+  <!-- Модальное окно галереи -->
+  <div id="galleryModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Галерея проектов</h3>
+        <button class="close-btn">&times;</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    // Анимация появления
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.category-item').forEach(item => observer.observe(item));
+
+    // Галерея
+    const galleryData = {
+      kitchen: [
+        'https://images.unsplash.com/photo-1556228578-8d89a5e1b5c1?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1584622650111-993a426fb468?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&h=500&q=85'
+      ],
+      living: [
+        'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1598928636135-d146004132ab?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1616469829580-4e3332e6d788?auto=format&fit=crop&w=600&h=500&q=85'
+      ],
+      bedroom: [
+        'https://images.unsplash.com/photo-1567720075475-749657264852?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1618773928154-68a4e1a7f22e?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1600210492486-724fe5c239a1?auto=format&fit=crop&w=600&h=500&q=85'
+      ],
+      hallway: [
+        'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1600585154084-8c8c264ec2a0?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1583847268964-d7e4c4b5c7d5?auto=format&fit=crop&w=600&h=500&q=85'
+      ],
+      other: [
+        'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=600&h=500&q=85',
+        'https://images.unsplash.com/photo-1598928636135-d146004132ab?auto=format&fit=crop&w=600&h=500&q=85'
+      ]
+    };
+
+    // Клик по категории
+    document.querySelectorAll('.category-item').forEach(item => {
+      item.addEventListener('click', function() {
+        const cat = this.dataset.category;
+        const grid = document.getElementById('galleryGrid');
+        grid.innerHTML = galleryData[cat].map(src => 
+          `<div class="gallery-item"><img src="${src}" loading="lazy" alt="Проект"></div>`
+        ).join('');
+        document.getElementById('galleryModal').style.display = 'flex';
+      });
+    });
+
+    // Закрытие модалки
+    document.querySelector('.close-btn').onclick = () => {
+      document.getElementById('galleryModal').style.display = 'none';
+    };
+    window.onclick = e => {
+      if (e.target.id === 'galleryModal') document.getElementById('galleryModal').style.display = 'none';
+    };
+  </script>
+</body>
+</html>
