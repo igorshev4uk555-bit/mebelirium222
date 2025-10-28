@@ -11,6 +11,7 @@
       --bg: #ffffff;
       --text: #1a1a1a;
       --gold: #d4af37;
+      --gold-dark: #b8860b;
       --gold-light: #e6c97a;
       --light-bg: #fafafa;
       --font-serif: 'Cormorant Garamond', serif;
@@ -32,10 +33,18 @@
     }
 
     /* Hero Slider */
-    .hero-slider {
+    .hero-section {
       position: relative;
       height: 100vh;
       overflow: hidden;
+    }
+
+    .hero-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
 
     .slide {
@@ -81,9 +90,12 @@
       color: #444;
     }
 
-    /* Кнопка консультации (по центру) */
-    .consult-btn {
-      display: inline-block;
+    /* Стабильная кнопка с анимацией hover */
+    .hero-consult-btn {
+      position: absolute;
+      bottom: 10vh;
+      left: 50%;
+      transform: translateX(-50%);
       background: var(--gold);
       color: white;
       font-family: var(--font-sans);
@@ -97,37 +109,36 @@
       box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      margin: 0 auto;
+      gap: 0.8rem;
+      z-index: 10;
     }
 
-    .consult-btn i {
+    .hero-consult-btn i {
       font-size: 1.2rem;
+      transition: transform 0.3s ease;
     }
 
-    .consult-btn:hover {
-      background: #b8860b;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
-    }
-
-    /* Фиксированная кнопка на мобильных */
-    .mobile-consult {
-      display: none;
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 60px;
-      height: 60px;
-      background: var(--gold);
-      color: white;
-      border-radius: 50%;
+    .hero-consult-btn span {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-      z-index: 999;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    /* Анимация при наведении */
+    .hero-consult-btn:hover {
+      background: var(--gold-dark);
+      box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    .hero-consult-btn:hover i {
+      transform: scale(1.15);
+    }
+
+    .hero-consult-btn:hover span {
+      transform: translateX(4px);
     }
 
     /* О нас */
@@ -276,6 +287,11 @@
       transform: translateY(0);
     }
 
+    .category-item:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
     .category-icon {
       width: 80px;
       height: 80px;
@@ -284,6 +300,12 @@
       justify-content: center;
       margin: 0 auto 1rem;
       color: var(--gold);
+      transition: all 0.3s ease;
+    }
+
+    .category-icon:hover {
+      color: var(--gold-dark);
+      transform: scale(1.1);
     }
 
     .category-icon svg {
@@ -292,6 +314,11 @@
       stroke: var(--gold);
       stroke-width: 1.2;
       fill: none;
+      transition: stroke 0.3s ease;
+    }
+
+    .category-icon:hover svg {
+      stroke: var(--gold-dark);
     }
 
     .category-title {
@@ -300,6 +327,11 @@
       font-weight: 500;
       color: var(--text);
       letter-spacing: 0.8px;
+      transition: color 0.3s ease;
+    }
+
+    .category-title:hover {
+      color: var(--gold);
     }
 
     .category-desc {
@@ -308,6 +340,11 @@
       font-size: 0.95rem;
       color: #555;
       margin-top: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .category-desc:hover {
+      color: var(--gold);
     }
 
     /* Футер */
@@ -379,12 +416,10 @@
       .slide p {
         font-size: 1.1rem;
       }
-      .consult-btn {
+      .hero-consult-btn {
         padding: 0.8rem 1.8rem;
         font-size: 1rem;
-      }
-      .mobile-consult {
-        display: flex;
+        bottom: 15vh;
       }
       .about {
         padding: 5rem 2rem;
@@ -403,35 +438,34 @@
 </head>
 <body>
 
-  <!-- Hero Slider -->
-  <section class="hero-slider">
-    <div class="slide active">
-      <div class="slide-content">
-        <h1>Индивидуальная мебель<br>с премиальным характером</h1>
-        <p>Каждый проект — это отражение вашего вкуса, стиля и пространства.</p>
-        <a href="#categories" class="consult-btn">
-          <i class="fas fa-arrow-down"></i> Начать проект
-        </a>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-slider">
+      <div class="slide active">
+        <div class="slide-content">
+          <h1>Индивидуальная мебель<br>с премиальным характером</h1>
+          <p>Каждый проект — это отражение вашего вкуса, стиля и пространства.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-content">
+          <h1>Искусство создания пространства</h1>
+          <p>Мы создаём не просто мебель — мы создаём атмосферу, в которой хочется жить.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-content">
+          <h1>Создано для жизни</h1>
+          <p>Не просто мебель — пространства, в которых рождаются воспоминания.</p>
+        </div>
       </div>
     </div>
-    <div class="slide">
-      <div class="slide-content">
-        <h1>Искусство создания пространства</h1>
-        <p>Мы создаём не просто мебель — мы создаём атмосферу, в которой хочется жить.</p>
-        <a href="#categories" class="consult-btn">
-          <i class="fas fa-arrow-down"></i> Начать проект
-        </a>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="slide-content">
-        <h1>Создано для жизни</h1>
-        <p>Не просто мебель — пространства, в которых рождаются воспоминания.</p>
-        <a href="#categories" class="consult-btn">
-          <i class="fas fa-arrow-down"></i> Начать проект
-        </a>
-      </div>
-    </div>
+
+    <!-- Стабильная кнопка с анимацией hover -->
+    <a href="#categories" class="hero-consult-btn">
+      <i class="fas fa-pen-fancy"></i>
+      <span>Начать проект</span>
+    </a>
   </section>
 
   <!-- О нас -->
@@ -600,11 +634,6 @@
     </div>
   </footer>
 
-  <!-- Фиксированная кнопка на мобильных -->
-  <a href="https://wa.me/79123456789" class="mobile-consult">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
   <script>
     // Слайдер
     const slides = document.querySelectorAll('.slide');
@@ -640,7 +669,6 @@
       item.addEventListener('click', function() {
         const category = this.dataset.category;
         window.location.href = `#category-${category}`;
-        // В реальном сайте здесь будет переход на отдельную страницу
         alert(`Вы выбрали категорию: ${this.querySelector('.category-title').textContent}\nЗдесь будет открыта страница с фото, описанием и ценой.`);
       });
     });
